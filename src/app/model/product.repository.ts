@@ -1,22 +1,17 @@
-import {Injectable} from '@angular/core';
-import {Product} from './product.model';
+import { Injectable } from '@angular/core';
+import { Product } from './product.model';
 import { ProductService} from './product.service';
-
+import { Observable } from 'rxjs';
 
 @Injectable()
-export class ProductRepository{
-  private products: Product[] = [];
+export class ProductRepository {
+  private products: Product[] ;
+  constructor(private service: ProductService ){ }
 
-  constructor(private service: ProductService ){
-    service.getProducts().subscribe(data =>{
-      console.log("The DATA",data);
-      
-      this.products = data;
-    });
-  }
+  getProducts(itemsPerPage: number = 24, page: number = 0): Observable<Product[]> {
+    console.log('Here');
 
-  getProducts(): Product[] {
-    return this.products;
+    return this.service.serveProducts(itemsPerPage,page);
   }
 
   getProduct(id: number): Product {
