@@ -14,17 +14,8 @@ import { HTTP } from '@ionic-native/http/ngx';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import {} from '../environments'
-const firebaseConfig = {
-  apiKey: 'AIzaSyBp4B_edoDHinF9zIjPqBuIgj5LCwdlZ8Q',
-  authDomain: 'tindio.firebaseapp.com',
-  databaseURL: 'https://tindio.firebaseio.com',
-  projectId: 'tindio',
-  storageBucket: 'tindio.appspot.com',
-  messagingSenderId: '892307557794',
-  appId: '1:892307557794:web:7ac164baccafee98b9b6fb',
-  measurementId: 'G-806WEPRSJH'
-};
+import {environment} from '../environments/environment';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -34,7 +25,7 @@ const firebaseConfig = {
     AppRoutingModule,
     HttpClientModule,
     ModelModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule
   ],
   providers: [
