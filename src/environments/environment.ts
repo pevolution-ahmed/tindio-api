@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig : {
+    apiKey: 'AIzaSyBp4B_edoDHinF9zIjPqBuIgj5LCwdlZ8Q',
+    authDomain: 'tindio.firebaseapp.com',
+    databaseURL: 'https://tindio.firebaseio.com',
+    projectId: 'tindio',
+    storageBucket: 'tindio.appspot.com',
+    messagingSenderId: '892307557794',
+    appId: '1:892307557794:web:7ac164baccafee98b9b6fb',
+    measurementId: 'G-806WEPRSJH'
+  }
 };
 
 /*

@@ -9,8 +9,6 @@ export class ProductRepository {
   constructor(private service: ProductService ){ }
 
   getProducts(itemsPerPage: number = 24, page: number = 0): Observable<Product[]> {
-    console.log('Here');
-
     return this.service.serveProducts(itemsPerPage,page);
   }
 
