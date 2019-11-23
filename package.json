@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
     "@ionic-native/core": "^5.0.0",
+    "@ionic-native/google-plus": "^5.17.0",
     "@ionic-native/http": "^5.17.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^5.0.0",
@@ -29,8 +30,11 @@
     "cordova-ios": "^5.0.1",
     "cordova-plugin-advanced-http": "^2.2.0",
     "cordova-plugin-file": "^6.0.2",
+    "cordova-plugin-googleplus": "^8.2.0",
     "core-js": "^2.5.4",
     "firebase": "^7.4.0",
+    "firebaseui": "^3.2.0",
+    "firebaseui-angular": "^4.0.1",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
@@ -76,7 +80,11 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-advanced-http": {}
+      "cordova-plugin-advanced-http": {},
+      "cordova-plugin-googleplus": {
+        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.1041259350900-v6bqp2748hmnsrfcl4r2lbpj0ka48b8a",
+        "WEB_APPLICATION_CLIENT_ID": "1041259350900-su02ato0kc4p17h64abtful45b8ienim.apps.googleusercontent.com"
+      }
     },
     "platforms": [
       "ios",
