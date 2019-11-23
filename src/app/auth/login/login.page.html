@@ -1,21 +1,56 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<!-- <div height="20px"*ngIf='loggedInUser'>
+    <ion-grid fixed>
+        <ion-row>
 
+        <ion-col size="2" >  <ion-buttons >
+            <ion-back-button defaultHref="login"></ion-back-button>
+          </ion-buttons></ion-col>
+        <ion-col size="4" class="ion-padding-top">        <ion-title>Home</ion-title>
+        </ion-col>
+          <ion-col size="3" class="ion-padding-top"><p style="font-weight: bolder;">Welcome,{{loggedInUser.displayName}}</p>                </ion-col>
+          <ion-col size="3">
+              <ion-thumbnail  class="thum center-items">
+                  <ion-img [src]="loggedInUser.photoURL"></ion-img>
+                </ion-thumbnail>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+   -->
+<ion-content class="login-content">
+  <ion-grid style="margin-top: 100px;"  >
+    
+    <ion-row class="">
+      <ion-col >
+          <img class="center-items" src ="../../../assets/images/tindioIcon-sm (1).png"/>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col>
+          <img  class="center-items" src ="../../../assets/images/tindioLogo-sm.png"/>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col>
+          <h5 style="text-align: center; color: white; font-weight:lighter"> Unlock the full experience </h5>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col size='auto' class="center-items">
+        <ion-button color="danger" style="--background	: white;" (click)="loginWithGoogle()">
+            <ion-icon slot="start" name="logo-google"></ion-icon>
+              <ion-text slot="end" >Login With Google</ion-text>
+          </ion-button>
+      </ion-col>
+      <ion-col class="center-items" size='auto'>    
+          <ion-button (click)="loginWithFacebook()">
+            
+            <ion-icon slot="start" name="logo-facebook"></ion-icon>
+            <ion-label slot="end">  Login With Facebook</ion-label>
+          </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-<ion-content>
-<ion-button color="danger" fill="outline" (click)="loginWithGoogle()">
-  <ion-icon slot="start" name="logo-google"></ion-icon>
-    <ion-label slot="end" >Login With Google</ion-label>
-</ion-button>
-
-<ion-button (click)="loginWithFacebook()">
-  
-  <ion-icon slot="start" name="logo-facebook"></ion-icon>
-  <ion-label slot="end">  Login With Facebook</ion-label>
-</ion-button>
 
 
 </ion-content>

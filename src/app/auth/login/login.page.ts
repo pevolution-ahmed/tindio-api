@@ -3,6 +3,8 @@ import { LoginService } from '../login.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
+import { LoadingOptions } from '@ionic/core';
 
 @Component({
   selector: 'app-login',
@@ -11,35 +13,65 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginPage implements OnInit {
   currentUser: firebase.User;
+  loader: any;
+  constructor(
+    private service: LoginService,
+    private route: Router,
+    public loadingCtrl: LoadingController
+    ) { }
 
-  constructor( private service: LoginService, private route: Router,private activeRoute: ActivatedRoute) { }
-
-  ngOnInit() {
-    this.service.getLoggeingState().subscribe((user) => {
-      this.currentUser = user;
-      if (this.currentUser){
-        this.route.navigateByUrl('/home');
-      }
-      console.log(user);
+   ngOnInit() {
+    this.showLoader().then(()=>{
+      this.service.getLoggeingState().subscribe((user)=>{
+        console.log('show is done1');
+        this.currentUser = user;
+        this.loader.dismiss();
+  
+        if (this.currentUser) {
+          console.log('show is done2');
+  
+          this.route.navigateByUrl('/home');
+          }
+  
+          console.log('show is done3');
+  
+       });
     });
+    console.log('show is done');
+    
   }
-  async loginWithGoogle(){
-    try{
+  async loginWithGoogle() {
+    try {
+      this.showLoader();
+      console.log('im here');
       const userCred = await this.service.googleLogin();
-      this.currentUser = userCred.user;
-      this.route.navigate(['/home'],{
-        state:{userData : this.currentUser}
+      this.loader.dismiss();
+
+      this.currentUser = userCred;
+      console.log('loader dismissed');
+
+      this.route.navigate(['/home'], {
+        state: {userData : this.currentUser}
       });
 
      } catch (err) {
-      console.log(new Error(err).stack); // done
+      console.log(new Error(err).stack);
      }
 
-
   }
-  loginWithFacebook(){
-    this.service.facebookLogin();
 
+   async showLoader() {
+    this.loader = await this.loadingCtrl.create({
+      message: 'Please wait...',
+      cssClass: 'custom-loader-class',
+      showBackdrop: true,
+      spinner: 'circular'
+    });
+    this.loader.present();
+}
+/*---- Unfinished yet ----*/
+  loginWithFacebook() {
+    this.service.facebookLogin();
   }
 
 }

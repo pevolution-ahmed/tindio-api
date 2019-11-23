@@ -1,13 +1,29 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tindio
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-toolbar>
+        <div height="20px"*ngIf='loggedInUser'>
+            <ion-grid fixed>
+                <ion-row>
+        
+                <ion-col size="2" >  <ion-buttons >
+                    <ion-back-button defaultHref="login"></ion-back-button>
+                  </ion-buttons></ion-col>
+                <ion-col size="4"  style="margin: auto;">        <ion-title>Home</ion-title>
+                </ion-col>
+                  <ion-col size="3" style="margin: auto;" ><p style="font-weight: bolder;">{{loggedInUser.displayName}}</p>                </ion-col>
+                  <ion-col size="3">
+                      <ion-thumbnail  class="thum center-items">
+                          <ion-img [src]="loggedInUser.photoURL"></ion-img>
+                        </ion-thumbnail>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+        </div>
+          
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content>
-
+  
 
     <ion-content>
         <ion-list>
@@ -21,7 +37,7 @@
                             <ion-row>  <ion-col size="auto"> {{item.name}}</ion-col></ion-row>
                           <ion-row>
                             <ion-col size="auto"> 
-                                      <ion-text class="price" color="tertiary" >  {{item.price}}</ion-text>
+                                      <ion-text class="price" color="tertiary" >  {{item.price}}EGP</ion-text>
                             </ion-col>
                             <ion-col size="auto">
                                 <ion-text class="store_name" color="primary" >  {{ item.store_name | uppercase }}</ion-text>

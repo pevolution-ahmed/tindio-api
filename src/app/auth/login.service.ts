@@ -23,23 +23,21 @@ export class LoginService implements OnInit{
   ngOnInit(): void {
   }
   async googleLogin(){
-    if (this.platform.is('cordova')){
-      try {
-        console.log('im hererreeanjkdhsaj');
-        const authInfo = await this.nativeGoogleLogin();
-        console.log('is he loged?', authInfo);
-        return authInfo;
+    let authInfo;
+    try {
+      if (this.platform.is('cordova')){
+            authInfo = await this.nativeGoogleLogin();
+            console.log('is he loged?', authInfo);
+            return authInfo.user;
 
-
-
-      } catch (err) {
-        console.log('gl', err);
+      } else {
+        console.log('in else');
+        this.webLoginWith(new auth.GoogleAuthProvider());
+        console.log('finished');
       }
-    } else {
-      this.webLoginWith(new auth.GoogleAuthProvider());
-      return null;
+    } catch (err) {
+      console.log('gl', err);
     }
-
   }
   facebookLogin(){
     if (this.platform.is('cordova')){
@@ -54,7 +52,6 @@ export class LoginService implements OnInit{
       const gplusUser = await this.gplus.login({
         'webClientId': environment.webClientId
         });
-      console.log(this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken)) + 'here4');
       return this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken));
 
     } catch (error) {
@@ -62,23 +59,23 @@ export class LoginService implements OnInit{
     }
   }
 
-   webLoginWith(provider){
+   async webLoginWith(provider){
       try{
-      this.getLoggeingState().subscribe((user) => {
-        this.currentUser = user;
-        if (this.currentUser === null){
-          this.afAuth.auth.signInWithRedirect(provider);
-        } else{
-          this.route.navigateByUrl('/home');
-        }
-      }, (err) => {
-        throw new Error(err + 'here').stack;
-      });
+        this.getLoggeingState().subscribe((user)=>{
+          this.currentUser = user;
+          if (this.currentUser === null){
+            this.afAuth.auth.signInWithRedirect(provider);
+          } else{
+            this.route.navigateByUrl('/home');
+          }
+        });
     } catch (err){
       console.log(err + 'here2');
     }
   }
   getLoggeingState(){
+    console.log('im in State ');
+    
     return this.afAuth.authState;
   }
   logout(){
