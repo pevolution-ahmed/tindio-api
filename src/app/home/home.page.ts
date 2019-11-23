@@ -30,8 +30,6 @@ export class HomePage implements OnInit, OnDestroy{
     this.showLoader().then(()=>{
       this.lgService.getLoggeingState().subscribe((user)=>{
         this.loggedInUser = user;
-        console.log(this.loggedInUser);
-        
         if (!user) {
           this.loader.dismiss();
           this.route.navigateByUrl('/login');
@@ -41,7 +39,6 @@ export class HomePage implements OnInit, OnDestroy{
 
       });
     });
-    
   }
 async showLoader() {
     this.loader = await this.loadingCtrl.create({
@@ -80,7 +77,6 @@ async showLoader() {
       event.target.disabled = true;
       this.pageNumber = 0;
     }
-
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

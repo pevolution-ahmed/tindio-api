@@ -27,16 +27,12 @@ export class LoginService implements OnInit{
     try {
       if (this.platform.is('cordova')){
             authInfo = await this.nativeGoogleLogin();
-            console.log('is he loged?', authInfo);
             return authInfo.user;
-
       } else {
-        console.log('in else');
         this.webLoginWith(new auth.GoogleAuthProvider());
-        console.log('finished');
       }
     } catch (err) {
-      console.log('gl', err);
+      console.log(new Error(err).stack);
     }
   }
   facebookLogin(){
@@ -55,7 +51,7 @@ export class LoginService implements OnInit{
       return this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken));
 
     } catch (error) {
-      console.log(error + 'here3');
+      console.log(new Error(error).stack);
     }
   }
 
@@ -70,12 +66,10 @@ export class LoginService implements OnInit{
           }
         });
     } catch (err){
-      console.log(err + 'here2');
+      console.log(new Error(err).stack);
     }
   }
   getLoggeingState(){
-    console.log('im in State ');
-    
     return this.afAuth.authState;
   }
   logout(){
